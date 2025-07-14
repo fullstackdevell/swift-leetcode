@@ -1,0 +1,23 @@
+class Solution {
+    func maxArea(_ height: [Int]) -> Int {
+        var pointerStart = height.startIndex
+        var pointerEnd = height.endIndex - 1
+        
+        var maxWater = 0
+        
+        while pointerStart < pointerEnd {
+            var currentWidth = pointerEnd - pointerStart
+            var currentHeight = min(height[pointerStart], height[pointerEnd])
+            var currentArea = currentWidth * currentHeight
+
+            maxWater = max(maxWater, currentArea)
+
+            if height[pointerStart] < height[pointerEnd] {
+                pointerStart += 1
+            } else {
+                pointerEnd -= 1
+            }
+        }
+        return maxWater
+    }
+}
